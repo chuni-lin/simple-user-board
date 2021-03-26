@@ -101,7 +101,7 @@
               <span class="nav-label">Find</span>
               <span
                 class="nav-value"
-                data-count="0"
+                :data-count="findCount"
               />
             </router-link>
           </li>
@@ -110,6 +110,17 @@
     </div>
   </nav>
 </template>
+
+<script>
+export default {
+  props: {
+    findCount: {
+      type: Number,
+      required: true
+    }
+  }
+}
+</script>
 
 <style scoped>
 .svg-btn {
