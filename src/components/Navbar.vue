@@ -2,63 +2,131 @@
   <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top">
     <div class="container">
       <div class="toolbar mr-2">
-        <a href="#" title="Go to Github">
-          <svg class="svg-btn" focusable="false" viewBox="0 0 24 24">
+        <a
+          href="#"
+          title="Go to Github"
+        >
+          <svg
+            class="svg-btn"
+            focusable="false"
+            viewBox="0 0 24 24"
+          >
             <path
-              d="M6,8c1.1,0 2,-0.9 2,-2s-0.9,-2 -2,-2 -2,0.9 -2,2 0.9,2 2,2zM12,20c1.1,0 2,-0.9 2,-2s-0.9,-2 -2,-2 -2,0.9 -2,2 0.9,2 2,2zM6,20c1.1,0 2,-0.9 2,-2s-0.9,-2 -2,-2 -2,0.9 -2,2 0.9,2 2,2zM6,14c1.1,0 2,-0.9 2,-2s-0.9,-2 -2,-2 -2,0.9 -2,2 0.9,2 2,2zM12,14c1.1,0 2,-0.9 2,-2s-0.9,-2 -2,-2 -2,0.9 -2,2 0.9,2 2,2zM16,6c0,1.1 0.9,2 2,2s2,-0.9 2,-2 -0.9,-2 -2,-2 -2,0.9 -2,2zM12,8c1.1,0 2,-0.9 2,-2s-0.9,-2 -2,-2 -2,0.9 -2,2 0.9,2 2,2zM18,14c1.1,0 2,-0.9 2,-2s-0.9,-2 -2,-2 -2,0.9 -2,2 0.9,2 2,2zM18,20c1.1,0 2,-0.9 2,-2s-0.9,-2 -2,-2 -2,0.9 -2,2 0.9,2 2,2z">
-            </path>
+              d="M6,8c1.1,0 2,-0.9 2,-2s-0.9,-2 -2,-2 -2,0.9 -2,2 0.9,2 2,2zM12,20c1.1,0 2,-0.9 2,-2s-0.9,-2 -2,-2 -2,0.9 -2,2 0.9,2 2,2zM6,20c1.1,0 2,-0.9 2,-2s-0.9,-2 -2,-2 -2,0.9 -2,2 0.9,2 2,2zM6,14c1.1,0 2,-0.9 2,-2s-0.9,-2 -2,-2 -2,0.9 -2,2 0.9,2 2,2zM12,14c1.1,0 2,-0.9 2,-2s-0.9,-2 -2,-2 -2,0.9 -2,2 0.9,2 2,2zM16,6c0,1.1 0.9,2 2,2s2,-0.9 2,-2 -0.9,-2 -2,-2 -2,0.9 -2,2zM12,8c1.1,0 2,-0.9 2,-2s-0.9,-2 -2,-2 -2,0.9 -2,2 0.9,2 2,2zM18,14c1.1,0 2,-0.9 2,-2s-0.9,-2 -2,-2 -2,0.9 -2,2 0.9,2 2,2zM18,20c1.1,0 2,-0.9 2,-2s-0.9,-2 -2,-2 -2,0.9 -2,2 0.9,2 2,2z"
+            />
           </svg>
         </a>
       </div>
 
-      <a class="navbar-brand" href="#">
-        <img class="rounded-circle" src="https://assets-lighthouse.s3.amazonaws.com/uploads/user/photo/1907/medium_02.jpg" width="30" height="30" alt="account icon">
+      <a
+        class="navbar-brand"
+        href="#"
+      >
+        <img
+          class="rounded-circle"
+          src="https://assets-lighthouse.s3.amazonaws.com/uploads/user/photo/1907/medium_02.jpg"
+          width="30"
+          height="30"
+          alt="account icon"
+        >
       </a>
 
       <!-- search form -->
-      <form id="search-form" class="form-inline position-relative">
-        <input id="search-input" class="form-control mr-sm-2" type="text" placeholder="Search user" required>
+      <form
+        id="search-form"
+        class="form-inline position-relative"
+      >
+        <input
+          id="search-input"
+          class="form-control mr-sm-2"
+          type="text"
+          placeholder="Search user"
+          required
+        >
         <span class="search-icon">
-          <button type="submit" class="search-icon-btn"></button>
+          <button
+            type="submit"
+            class="search-icon-btn"
+          />
         </span>
       </form>
 
       <!-- mobile mode btn -->
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
-        <span class="navbar-toggler-icon"></span>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarSupportedContent"
+      >
+        <span class="navbar-toggler-icon" />
       </button>
 
       <!-- link list -->
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <div
+        id="navbarSupportedContent"
+        class="collapse navbar-collapse"
+      >
         <ul class="navbar-nav nav">
           <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a
+              class="nav-link"
+              href="#"
+            >
               <span class="nav-label sample">Posts</span>
-              <span class="nav-value" data-count="0"></span>
+              <span
+                class="nav-value"
+                data-count="0"
+              />
             </a>
           </li>
           <li class="nav-item">
-            <a id="nav-following" class="nav-link" href="?route=following">
+            <a
+              id="nav-following"
+              class="nav-link"
+              href="?route=following"
+            >
               <span class="nav-label">Following</span>
-              <span class="nav-value" data-count="0"></span>
+              <span
+                class="nav-value"
+                data-count="0"
+              />
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a
+              class="nav-link"
+              href="#"
+            >
               <span class="nav-label sample">Followers</span>
-              <span class="nav-value" data-count="0"></span>
+              <span
+                class="nav-value"
+                data-count="0"
+              />
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a
+              class="nav-link"
+              href="#"
+            >
               <span class="nav-label sample">Likes</span>
-              <span class="nav-value" data-count="0"></span>
+              <span
+                class="nav-value"
+                data-count="0"
+              />
             </a>
           </li>
           <li class="nav-item">
-            <a id="nav-find" class="nav-link active" href="index.html">
+            <a
+              id="nav-find"
+              class="nav-link active"
+              href="index.html"
+            >
               <span class="nav-label">Find</span>
-              <span class="nav-value" data-count="0"></span>
+              <span
+                class="nav-value"
+                data-count="0"
+              />
             </a>
           </li>
         </ul>
@@ -126,7 +194,7 @@ a.nav-link span {
   .navbar-brand {
     margin: 0 auto 0 0;
   }
-  
+
   .navbar-collapse {
     text-align: center;
   }
@@ -161,4 +229,4 @@ a.nav-link span {
     font-size: 1rem;
   }
 }
-</style> 
+</style>
