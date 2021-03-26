@@ -1,13 +1,17 @@
 <template>
-  <div id="restaurant-forum">
-    <router-view />
+  <div id="app">
+    <Navbar/>
   </div>
 </template>
 
 <script>
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap'
+import Navbar from '../src/components/Navbar'
 export default {
-  name: 'App'
+  name: 'App',
+  components: {
+    Navbar
+  }
 }
 </script>
