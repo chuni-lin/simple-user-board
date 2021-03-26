@@ -18,9 +18,9 @@
         </a>
       </div>
 
-      <a
+      <router-link
         class="navbar-brand"
-        href="#"
+        to="/home"
       >
         <img
           class="rounded-circle"
@@ -29,7 +29,7 @@
           height="30"
           alt="account icon"
         >
-      </a>
+      </router-link>
 
       <!-- search form -->
       <form
@@ -135,7 +135,9 @@ export default {
     handleSearch () {
       const query = this.search.trim()
       if (!query) return false
-      this.$router.push(`/search?key=${query}`)
+      this.$router
+        .push(`/search?key=${query}`)
+        .catch(() => {})
     }
   }
 }
