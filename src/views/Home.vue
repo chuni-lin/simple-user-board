@@ -8,6 +8,12 @@
       class="row"
       @click.stop.prevent="handleClick"
     >
+      <p
+        v-if="!users.length"
+        class="col-12 text-center font-weight-bolder"
+      >
+        No results found...
+      </p>
       <!-- user data 放置場 -->
       <template v-if="mode === 'card'">
         <UserCard
