@@ -1,7 +1,9 @@
 <template>
   <div class="container">
     <!-- <p id="content-status" class="text-center">Now loading...</p> -->
+    <Spinner v-if="isLoading" />
     <div
+      v-else
       id="data-panel"
       class="row"
       @click="handleClick"
@@ -31,6 +33,7 @@
 <script>
 import UserCard from '../components/UserCard'
 import UserList from '../components/UserList.vue'
+import Spinner from '../components/Spinner.vue'
 import usersAPI from '../apis/users'
 import { Toast } from '../utils/helpers'
 import $ from 'jquery'
@@ -38,7 +41,8 @@ import $ from 'jquery'
 export default {
   components: {
     UserCard,
-    UserList
+    UserList,
+    Spinner
   },
   props: {
     mode: {
@@ -51,7 +55,8 @@ export default {
       users: [],
       initialUsers: [],
       LIMIT: 24,
-      route: this.$route.name
+      route: this.$route.name,
+      isLoading: true
     }
   },
   watch: {
@@ -69,6 +74,7 @@ export default {
   methods: {
     async fetchUsers () {
       try {
+        this.isLoading = true
         const { data } = await usersAPI.getUsers()
         if (data.status === 'error') {
           throw new Error(data.message)
@@ -81,8 +87,10 @@ export default {
         }
         this.initialUsers = users
         this.users = this.initialUsers.splice(0, this.LIMIT)
+        this.isLoading = false
         this.$emit('afterFetchUsers', this.users.length)
       } catch (error) {
+        this.isLoading = false
         Toast.fire({
           icon: 'error',
           title: '無法取得用戶資料，請稍後再試'
@@ -92,6 +100,7 @@ export default {
     fetchFollowing () {
       const following = JSON.parse(sessionStorage.getItem('following'))
       this.users = following
+      this.isLoading = false
       this.$emit('afterFetchFollowing')
     },
     afterToggleFollow (count) {
