@@ -35,12 +35,9 @@
 </template>
 
 <script>
+import { getEmailAccount } from '../utils/mixins'
 export default {
-  filters: {
-    getEmailAccount (email) {
-      return email.split('@')[0]
-    }
-  },
+  mixins: [getEmailAccount],
   props: {
     user: {
       type: Object,

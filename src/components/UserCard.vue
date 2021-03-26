@@ -42,7 +42,7 @@
             data-target="#modal"
             :data-id="user.id"
           >
-            @{{ user.email }}
+            @{{ user.email | getEmailAccount }}
           </span>
         </h6>
         <p class="card-text">
@@ -54,7 +54,9 @@
 </template>
 
 <script>
+import { getEmailAccount } from '../utils/mixins'
 export default {
+  mixins: [getEmailAccount],
   props: {
     user: {
       type: Object,
