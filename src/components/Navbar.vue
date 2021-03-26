@@ -131,6 +131,13 @@ export default {
       search: this.$route.query.key || ''
     }
   },
+  watch: {
+    $route: function () {
+      if (this.$route.name !== 'search') {
+        this.search = ''
+      }
+    }
+  },
   methods: {
     handleSearch () {
       const query = this.search.trim()
