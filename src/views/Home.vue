@@ -50,20 +50,19 @@ export default {
       users: [],
       initialUsers: [],
       LIMIT: 24,
-      isLoading: false
+      route: this.$route.name
     }
   },
   watch: {
-    $route: function (to) {
-      if (to.name === 'find') { this.fetchUsers() }
-      if (to.name === 'following') { this.fetchFollowing() }
+    $route: function () {
+      // 真實跳頁，重掛 scroll 監聽
+      $(window).scrollTop(0)
+      this.$router.go()
     }
   },
   created () {
-    const route = this.$route.name
-    if (route === 'home') { this.fetchUsers() }
-    if (route === 'following') { this.fetchFollowing() }
-    // 監聽 scroll 無限下拉分頁
+    if (this.route === 'home') { this.fetchUsers() }
+    if (this.route === 'following') { this.fetchFollowing() }
     $(window).on('scroll', this.handleScroll)
   },
   methods: {
@@ -92,22 +91,36 @@ export default {
     fetchFollowing () {
       const following = JSON.parse(sessionStorage.getItem('following'))
       this.users = following
+      this.$emit('afterFetchFollowing')
     },
     afterToggleFollow (count) {
       this.$emit('afterToggleFollow', count)
+    },
+    findMore () {
+      const newUsers = this.initialUsers.splice(0, this.LIMIT)
+      this.users.push(...newUsers)
+      // 全載入後解除 scroll 監聽器
+      if (!this.initialUsers.length) { $(window).unbind('scroll') }
+    },
+    followingMore () {
+      const following = JSON.parse(sessionStorage.getItem('following'))
+      const offset = this.users.length
+      const usersLength = this.users.push(...following.slice(offset, this.LIMIT))
+      // 全載入後解除 scroll 監聽器
+      if (following.length === usersLength) { $(window).unbind('scroll') }
     },
     handleScroll () {
       // scroll 接近底部時，載入新 users
       const bottom = $(document).height() - $(window).height()
       if ($(window).scrollTop() >= (bottom - 300)) {
-        const newUsers = this.initialUsers.splice(0, this.LIMIT)
-        this.users.push(...newUsers)
-        // 通知父層 users 數量
-        this.$emit('afterLoadUsers', this.users.length)
-      }
-      // 全載入後解除 scroll 監聽器
-      if (!this.initialUsers.length) {
-        $(window).unbind('scroll')
+        if (this.route === 'home') {
+          this.findMore()
+          // 通知父層 users 數量
+          this.$emit('afterLoadUsers', this.users.length)
+        }
+        if (this.route === 'following') {
+          this.followingMore()
+        }
       }
     }
   }
