@@ -20,10 +20,12 @@
           :data-id="user.id"
         >
         <button
-          class="btn btn-follow btn-outline-primary"
+          class="btn btn-follow"
+          :class="{ 'btn-primary': user.isFollowed, 'btn-outline-primary': !user.isFollowed }"
           data-follow="Follow"
           data-following="Following"
           :data-id="user.id"
+          @click.stop.prevent="toggleFollow"
         />
       </div>
       <div class="card-body pl-3 pr-3">
@@ -54,9 +56,9 @@
 </template>
 
 <script>
-import { getEmailAccount } from '../utils/mixins'
+import { getEmailAccount, toggleFollow } from '../utils/mixins'
 export default {
-  mixins: [getEmailAccount],
+  mixins: [getEmailAccount, toggleFollow],
   props: {
     user: {
       type: Object,

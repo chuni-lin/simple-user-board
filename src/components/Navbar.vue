@@ -76,7 +76,7 @@
               <span class="nav-label">Following</span>
               <span
                 class="nav-value"
-                data-count="0"
+                :data-count="followingCount"
               />
             </router-link>
           </li>
@@ -115,6 +115,10 @@
 export default {
   props: {
     findCount: {
+      type: Number,
+      required: true
+    },
+    followingCount: {
       type: Number,
       required: true
     }
