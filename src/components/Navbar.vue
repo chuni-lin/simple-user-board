@@ -24,7 +24,7 @@
       >
         <img
           class="rounded-circle"
-          src="https://assets-lighthouse.s3.amazonaws.com/uploads/user/photo/1907/medium_02.jpg"
+          src="https://assets-lighthouse.alphacamp.co/uploads/user/photo/4412/medium_5915EB44-7E19-430E-B5BA-3915AD9CA05B-58163-00001B687D072988.JPG"
           width="30"
           height="30"
           alt="account icon"
@@ -69,18 +69,6 @@
         <ul class="navbar-nav nav">
           <li class="nav-item">
             <a
-              class="nav-link"
-              href="#"
-            >
-              <span class="nav-label sample">Posts</span>
-              <span
-                class="nav-value"
-                data-count="0"
-              />
-            </a>
-          </li>
-          <li class="nav-item">
-            <a
               id="nav-following"
               class="nav-link"
               href="?route=following"
@@ -98,18 +86,6 @@
               href="#"
             >
               <span class="nav-label sample">Followers</span>
-              <span
-                class="nav-value"
-                data-count="0"
-              />
-            </a>
-          </li>
-          <li class="nav-item">
-            <a
-              class="nav-link"
-              href="#"
-            >
-              <span class="nav-label sample">Likes</span>
               <span
                 class="nav-value"
                 data-count="0"
