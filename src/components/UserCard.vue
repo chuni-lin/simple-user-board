@@ -7,7 +7,7 @@
           src="https://picsum.photos/350/100?random=0"
           data-toggle="modal"
           data-target="#modal"
-          data-id="492"
+          :data-id="user.id"
         >
       </div>
       <div class="row pt-2">
@@ -17,14 +17,13 @@
           alt="photo"
           data-toggle="modal"
           data-target="#modal"
-          data-id="492"
+          :data-id="user.id"
         >
         <button
           class="btn btn-follow btn-outline-primary"
-          type="button"
           data-follow="Follow"
           data-following="Following"
-          data-id="492"
+          :data-id="user.id"
         />
       </div>
       <div class="card-body pl-3 pr-3">
@@ -32,17 +31,19 @@
           class="card-title show-modal"
           data-toggle="modal"
           data-target="#modal"
-          data-id="492"
+          :data-id="user.id"
         >
           {{ user.name }}
         </h5>
         <h6 class="card-subtitle mb-2 text-muted">
-          @<span
+          <span
             class="show-modal"
             data-toggle="modal"
             data-target="#modal"
-            data-id="492"
-          >{{ user.surname }}</span>
+            :data-id="user.id"
+          >
+            @{{ user.email }}
+          </span>
         </h6>
         <p class="card-text">
           Lorem ipsum dolor sit amet, consectetur adipisicing......
