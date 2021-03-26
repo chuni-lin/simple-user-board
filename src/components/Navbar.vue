@@ -153,7 +153,7 @@ export default {
   text-decoration: line-through;
 }
 .nav-link {
-  border-bottom: 0 solid #000;
+  border-bottom: 2px solid #fff;
   transition-property: border-bottom;
   transition: 0.15s linear;
   padding: 0;
@@ -229,6 +229,7 @@ a.nav-link span {
   .nav-label {
     display: inline;
     font-size: 1rem;
+    margin-right: .3rem;
   }
   .nav-value {
     display: inline;
