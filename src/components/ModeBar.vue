@@ -21,9 +21,12 @@
 
       <!-- Search result info -->
       <p
+        v-if="searchCount"
         id="search-info"
         class="mb-0 text-muted"
-      />
+      >
+        共有 {{ searchCount }} 筆搜尋結果
+      </p>
     </div>
   </div>
 </template>
@@ -35,6 +38,10 @@ export default {
     mode: {
       type: String,
       required: true
+    },
+    searchCount: {
+      type: Number,
+      default: 0
     }
   },
   methods: {

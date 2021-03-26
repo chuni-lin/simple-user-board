@@ -6,6 +6,7 @@
     />
     <ModeBar
       :mode="mode"
+      :search-count="searchCount"
       @afterToggleMode="afterToggleMode"
     />
     <main
@@ -19,6 +20,7 @@
         @afterLoadUsers="afterLoadUsers"
         @afterFetchFollowing="afterFetchFollowing"
         @afterClickUser="afterClickUser"
+        @afterSearch="afterSearch"
       />
     </main>
     <Modal :user="modalUser" />
@@ -44,7 +46,8 @@ export default {
       mode: 'card',
       findCount: 0,
       followingCount: 0,
-      modalUser: {}
+      modalUser: {},
+      searchCount: 0
     }
   },
   created () {
@@ -71,6 +74,9 @@ export default {
     },
     afterClickUser (user) {
       this.modalUser = user
+    },
+    afterSearch (count) {
+      this.searchCount = count
     }
   }
 }

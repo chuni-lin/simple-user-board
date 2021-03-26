@@ -93,6 +93,7 @@ export default {
             return regex.test(account)
           })
         this.users = searchUsers
+        this.$emit('afterSearch', searchUsers.length)
         this.isLoading = false
       } catch (err) {
         this.isLoading = false

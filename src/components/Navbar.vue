@@ -101,7 +101,7 @@
               to="home"
               class="nav-link active"
             >
-              <span class="nav-label">Find</span>
+              <span class="nav-label">results</span>
               <span
                 class="nav-value"
                 :data-count="findCount"
