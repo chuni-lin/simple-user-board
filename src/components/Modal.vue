@@ -21,7 +21,7 @@
               <img
                 id="show-avatar"
                 class="img-fluid"
-                src="https://uinames.com/api/photos/female/9.jpg"
+                :src="user.avatar"
                 alt="avatar photo"
               >
             </div>
@@ -31,20 +31,21 @@
                 class="row border-bottom pb-2"
               >
                 <!-- user data 放置場 -->
+                <!-- user data -->
                 <div class="col-12 h5">
-                  Jenel Ivănceanu
+                  {{ user.name }}
                 </div>
-                <div class="col-12 col-lg-3 mb-2 icon-gender">
-                  male
+                <div class="col-12 col-lg-5 mb-2 icon-gender">
+                  {{ user.gender }}
                 </div>
-                <div class="col-12 col-lg-9 mb-2 icon-created_at">
-                  Joined Jul 15, 2019
+                <div class="col-12 col-lg-7 mb-2 icon-created_at">
+                  Joined {{ user.created_at | fromNow }}
                 </div>
-                <div class="col-12 col-lg-3 mb-2 icon-region">
-                  Romania
+                <div class="col-12 col-lg-5 mb-2 icon-region">
+                  {{ user.region }}
                 </div>
-                <div class="col-12 col-lg-9 mb-2 icon-email">
-                  jenel90@example.com
+                <div class="col-12 col-lg-7 mb-2 icon-email">
+                  {{ user.email }}
                 </div>
               </div>
               <div class="row pt-2">
@@ -59,6 +60,19 @@
     </div>
   </div>
 </template>
+
+<script>
+import { fromNowFilter } from './../utils/mixins'
+export default {
+  mixins: [fromNowFilter],
+  props: {
+    user: {
+      type: Object,
+      required: true
+    }
+  }
+}
+</script>
 
 <style scoped>
 .icon-created_at::before {

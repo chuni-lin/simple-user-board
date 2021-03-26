@@ -18,9 +18,10 @@
         @afterToggleFollow="afterToggleFollow"
         @afterLoadUsers="afterLoadUsers"
         @afterFetchFollowing="afterFetchFollowing"
+        @afterClickUser="afterClickUser"
       />
     </main>
-    <Modal />
+    <Modal :user="modalUser" />
   </div>
 </template>
 
@@ -42,7 +43,8 @@ export default {
     return {
       mode: 'card',
       findCount: 0,
-      followingCount: 0
+      followingCount: 0,
+      modalUser: {}
     }
   },
   created () {
@@ -66,6 +68,9 @@ export default {
     },
     afterLoadUsers (count) {
       this.findCount = count
+    },
+    afterClickUser (user) {
+      this.modalUser = user
     }
   }
 }
