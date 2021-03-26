@@ -44,7 +44,6 @@
           class="form-control mr-sm-2"
           type="text"
           placeholder="Search user"
-          required
         >
         <span class="search-icon">
           <button
@@ -141,7 +140,7 @@ export default {
   methods: {
     handleSearch () {
       const query = this.search.trim()
-      if (!query) return false
+      if (!query) return this.$router.push('/home')
       this.$router
         .push(`/search?key=${query}`)
         .catch(() => {})
