@@ -17,10 +17,10 @@
         </div>
         <div class="modal-body">
           <div class="row">
-            <div class="col-4">
+            <div class="col-4 text-center">
               <img
                 id="show-avatar"
-                class="img-fluid"
+                class="img-fluid avatar"
                 :src="user.avatar"
                 alt="avatar photo"
               >
@@ -75,6 +75,10 @@ export default {
 </script>
 
 <style scoped>
+.avatar {
+  border-radius: 10%;
+  box-shadow: 2px 2px 4px gray;
+}
 .icon-created_at::before {
   font-family: "Font Awesome 5 Free";
   font-weight: 900;
