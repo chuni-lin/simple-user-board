@@ -32,6 +32,7 @@ import UserCard from '../components/UserCard'
 import UserList from '../components/UserList.vue'
 import usersAPI from '../apis/users'
 import { Toast } from '../utils/helpers'
+import $ from 'jquery'
 
 export default {
   components: {
@@ -48,7 +49,8 @@ export default {
     return {
       users: [],
       initialUsers: [],
-      LIMIT: 24
+      LIMIT: 24,
+      isLoading: false
     }
   },
   watch: {
@@ -61,6 +63,8 @@ export default {
     const route = this.$route.name
     if (route === 'home') { this.fetchUsers() }
     if (route === 'following') { this.fetchFollowing() }
+    // 監聽 scroll 無限下拉分頁
+    $(window).on('scroll', this.handleScroll)
   },
   methods: {
     async fetchUsers () {
@@ -76,7 +80,7 @@ export default {
           user.isFollowed = following.some(followingUser => user.id === followingUser.id)
         }
         this.initialUsers = users
-        this.users = users.slice(0, this.LIMIT)
+        this.users = this.initialUsers.splice(0, this.LIMIT)
         this.$emit('afterFetchUsers', this.users.length)
       } catch (error) {
         Toast.fire({
@@ -91,6 +95,20 @@ export default {
     },
     afterToggleFollow (count) {
       this.$emit('afterToggleFollow', count)
+    },
+    handleScroll () {
+      // scroll 接近底部時，載入新 users
+      const bottom = $(document).height() - $(window).height()
+      if ($(window).scrollTop() >= (bottom - 300)) {
+        const newUsers = this.initialUsers.splice(0, this.LIMIT)
+        this.users.push(...newUsers)
+        // 通知父層 users 數量
+        this.$emit('afterLoadUsers', this.users.length)
+      }
+      // 全載入後解除 scroll 監聽器
+      if (!this.initialUsers.length) {
+        $(window).unbind('scroll')
+      }
     }
   }
 }
