@@ -85,15 +85,30 @@ export default {
   },
   data () {
     return {
-      users: []
+      users: [],
+      allUsers: [],
+      following: []
+    }
+  },
+  watch: {
+    $route: function (to) {
+      console.log(to)
+      if (to.name === 'home') { this.users = this.allUsers }
+      if (to.name === 'following') { this.users = this.following }
     }
   },
   created () {
-    this.fetchUsers()
+    const route = this.$route.name
+    if (route === 'home') { this.fetchUsers() }
+    if (route === 'following') { this.fetchFollowing() }
   },
   methods: {
     fetchUsers () {
-      this.users = dummyData.results
+      this.allUsers = dummyData.results
+      this.users = [...this.allUsers]
+    },
+    fetchFollowing () {
+      this.users = [...this.following]
     }
   }
 }

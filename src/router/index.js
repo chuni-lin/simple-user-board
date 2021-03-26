@@ -17,6 +17,11 @@ const routes = [
     component: Home
   },
   {
+    path: '/following',
+    name: 'following',
+    component: Home
+  },
+  {
     path: '*',
     name: 'not-found',
     component: NotFound
@@ -24,6 +29,7 @@ const routes = [
 ]
 
 const router = new VueRouter({
+  linkExactActiveClass: 'active',
   routes
 })
 

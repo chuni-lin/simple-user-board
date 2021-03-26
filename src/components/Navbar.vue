@@ -68,17 +68,17 @@
       >
         <ul class="navbar-nav nav">
           <li class="nav-item">
-            <a
+            <router-link
               id="nav-following"
+              to="following"
               class="nav-link"
-              href="?route=following"
             >
               <span class="nav-label">Following</span>
               <span
                 class="nav-value"
                 data-count="0"
               />
-            </a>
+            </router-link>
           </li>
           <li class="nav-item">
             <a
@@ -93,17 +93,17 @@
             </a>
           </li>
           <li class="nav-item">
-            <a
+            <router-link
               id="nav-find"
+              to="home"
               class="nav-link active"
-              href="index.html"
             >
               <span class="nav-label">Find</span>
               <span
                 class="nav-value"
                 data-count="0"
               />
-            </a>
+            </router-link>
           </li>
         </ul>
       </div>
