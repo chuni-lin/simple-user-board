@@ -35,9 +35,12 @@
       <form
         id="search-form"
         class="form-inline position-relative"
+        @submit.stop.prevent="handleSearch"
       >
         <input
           id="search-input"
+          v-model="search"
+          name="key"
           class="form-control mr-sm-2"
           type="text"
           placeholder="Search user"
@@ -121,6 +124,18 @@ export default {
     followingCount: {
       type: Number,
       required: true
+    }
+  },
+  data () {
+    return {
+      search: this.$route.query.key || ''
+    }
+  },
+  methods: {
+    handleSearch () {
+      const query = this.search.trim()
+      if (!query) return false
+      this.$router.push(`/search?key=${query}`)
     }
   }
 }

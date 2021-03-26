@@ -6,7 +6,7 @@
       v-else
       id="data-panel"
       class="row"
-      @click="handleClick"
+      @click.stop.prevent="handleClick"
     >
       <!-- user data 放置場 -->
       <template v-if="mode === 'card'">
@@ -70,9 +70,38 @@ export default {
   created () {
     if (this.route === 'home') { this.fetchUsers() }
     if (this.route === 'following') { this.fetchFollowing() }
+    if (this.route === 'search') { this.fetchSearch() }
     $(window).on('scroll', this.handleScroll)
   },
   methods: {
+    async fetchSearch () {
+      try {
+        this.isLoading = true
+        const query = this.$route.query.key
+        const regex = new RegExp(query, 'i')
+        // Query API
+        const { data } = await usersAPI.getUsers()
+        if (data.status === 'error') {
+          throw new Error(data.message)
+        }
+        // search 符合之 users，並添加 isFollowed 屬性
+        const following = JSON.parse(sessionStorage.getItem('following'))
+        const searchUsers = data.results
+          .filter(user => {
+            user.isFollowed = following.some(followingUser => user.id === followingUser.id)
+            const account = user.email.split('@')[0]
+            return regex.test(account)
+          })
+        this.users = searchUsers
+        this.isLoading = false
+      } catch (err) {
+        this.isLoading = false
+        Toast.fire({
+          icon: 'error',
+          title: '伺服器忙碌中，請稍後再試'
+        })
+      }
+    },
     async fetchUsers () {
       try {
         this.isLoading = true

@@ -22,6 +22,11 @@ const routes = [
     component: Home
   },
   {
+    path: '/search',
+    name: 'search',
+    component: Home
+  },
+  {
     path: '*',
     name: 'not-found',
     component: NotFound
