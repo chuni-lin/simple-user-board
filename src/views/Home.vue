@@ -15,7 +15,11 @@
       </template>
 
       <template v-else>
-        <h1>list mode</h1>
+        <UserList
+          v-for="user in users"
+          :key="user.id"
+          :user="user"
+        />
       </template>
     </div>
   </div>
@@ -23,6 +27,7 @@
 
 <script>
 import UserCard from '../components/UserCard'
+import UserList from '../components/UserList.vue'
 const dummyData = {
   results: [
     {
@@ -69,7 +74,8 @@ const dummyData = {
 
 export default {
   components: {
-    UserCard
+    UserCard,
+    UserList
   },
   props: {
     mode: {
