@@ -30,49 +30,8 @@
 <script>
 import UserCard from '../components/UserCard'
 import UserList from '../components/UserList.vue'
-const dummyData = {
-  results: [
-    {
-      id: 457,
-      name: 'Lâm',
-      surname: 'Quân',
-      email: 'lâm.quân@example.com',
-      gender: 'female',
-      age: 21,
-      region: 'Vietnam',
-      birthday: '05/13/1998',
-      avatar: 'https://uinames.com/api/photos/female/19.jpg',
-      created_at: '2019-07-15T10:53:13.949Z',
-      updated_at: '2019-07-15T10:53:13.949Z'
-    },
-    {
-      id: 458,
-      name: 'Biljana',
-      surname: 'Turković',
-      email: 'biljana-89@example.com',
-      gender: 'female',
-      age: 30,
-      region: 'Bosnia and Herzegovina',
-      birthday: '11/26/1989',
-      avatar: 'https://uinames.com/api/photos/female/22.jpg',
-      created_at: '2019-07-15T10:53:14.289Z',
-      updated_at: '2019-07-15T10:53:14.289Z'
-    },
-    {
-      id: 459,
-      name: 'Radomír',
-      surname: 'Moravčík',
-      email: 'radomír89@example.com',
-      gender: 'male',
-      age: 30,
-      region: 'Slovakia',
-      birthday: '11/30/1989',
-      avatar: 'https://uinames.com/api/photos/male/19.jpg',
-      created_at: '2019-07-15T10:53:14.616Z',
-      updated_at: '2019-07-15T10:53:14.616Z'
-    }
-  ]
-}
+import usersAPI from '../apis/users'
+import { Toast } from '../utils/helpers'
 
 export default {
   components: {
@@ -87,7 +46,9 @@ export default {
   },
   data () {
     return {
-      users: []
+      users: [],
+      initialUsers: [],
+      LIMIT: 24
     }
   },
   watch: {
@@ -102,14 +63,27 @@ export default {
     if (route === 'following') { this.fetchFollowing() }
   },
   methods: {
-    fetchUsers () {
-      // 判斷 isFollowed
-      const following = JSON.parse(sessionStorage.getItem('following'))
-      for (const item of dummyData.results) {
-        item.isFollowed = following.some(user => user.id === item.id)
+    async fetchUsers () {
+      try {
+        const { data } = await usersAPI.getUsers()
+        if (data.status === 'error') {
+          throw new Error(data.message)
+        }
+        const users = data.results
+        // 判斷 isFollowed
+        const following = JSON.parse(sessionStorage.getItem('following'))
+        for (const user of users) {
+          user.isFollowed = following.some(followingUser => user.id === followingUser.id)
+        }
+        this.initialUsers = users
+        this.users = users.slice(0, this.LIMIT)
+        this.$emit('afterFetchUsers', this.users.length)
+      } catch (error) {
+        Toast.fire({
+          icon: 'error',
+          title: '無法取得用戶資料，請稍後再試'
+        })
       }
-      this.users = dummyData.results
-      this.$emit('afterFetchUsers', this.users.length)
     },
     fetchFollowing () {
       const following = JSON.parse(sessionStorage.getItem('following'))
