@@ -4,6 +4,7 @@ import NotFound from '../views/NotFound.vue'
 import Home from '../views/Home.vue'
 
 Vue.use(VueRouter)
+const title = '| Simple User Board'
 
 const routes = [
   {
@@ -14,17 +15,26 @@ const routes = [
   {
     path: '/home',
     name: 'home',
-    component: Home
+    component: Home,
+    meta: {
+      title: `Find ${title}`
+    }
   },
   {
     path: '/following',
     name: 'following',
-    component: Home
+    component: Home,
+    meta: {
+      title: `Following ${title}`
+    }
   },
   {
     path: '/search',
     name: 'search',
-    component: Home
+    component: Home,
+    meta: {
+      title: `Search ${title}`
+    }
   },
   {
     path: '*',
@@ -36,6 +46,13 @@ const routes = [
 const router = new VueRouter({
   linkExactActiveClass: 'active',
   routes
+})
+
+router.beforeEach((to, from, next) => {
+  if (to.meta.title) {
+    document.title = to.meta.title
+  }
+  next()
 })
 
 export default router

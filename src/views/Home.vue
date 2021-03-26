@@ -6,13 +6,13 @@
       v-else
       id="data-panel"
       class="row"
-      @click.stop.prevent="handleClick"
+      @click="handleClick"
     >
       <p
         v-if="!users.length"
-        class="col-12 text-center font-weight-bolder"
+        class="col-12 text-center"
       >
-        No results found...
+        No results found
       </p>
       <!-- user data 放置場 -->
       <template v-if="mode === 'card'">
@@ -79,6 +79,7 @@ export default {
   },
   created () {
     this.handleRoute()
+    // 監聽 scroll 無限下拉分頁
     $(window).on('scroll', this.handleScroll)
   },
   methods: {
