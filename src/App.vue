@@ -1,12 +1,15 @@
 <template>
   <div id="app">
     <Navbar />
-    <ModeBar />
+    <ModeBar
+      :mode="mode"
+      @afterToggleMode="afterToggleMode"
+    />
     <main
       role="main"
       class="pt-3"
     >
-      <router-view />
+      <router-view :mode="mode" />
     </main>
     <Modal />
   </div>
@@ -25,6 +28,16 @@ export default {
     Navbar,
     ModeBar,
     Modal
+  },
+  data () {
+    return {
+      mode: 'card'
+    }
+  },
+  methods: {
+    afterToggleMode (selectedMode) {
+      this.mode = selectedMode
+    }
   }
 }
 </script>
