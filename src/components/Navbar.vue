@@ -3,7 +3,7 @@
     <div class="container">
       <div class="toolbar mr-2">
         <a
-          href="#"
+          href="https://github.com/chuni-lin/user-list-vue"
           title="Go to Github"
         >
           <svg
